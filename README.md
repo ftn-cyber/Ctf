@@ -258,7 +258,133 @@
   .terminal{
     width: min(680px, 92vw);
     background: #000;
-< truncated lines 261-387 >
+    border: 1px solid var(--cyan);
+    border-radius: 6px;
+    box-shadow: 0 0 40px rgba(53,230,255,0.35);
+    overflow:hidden;
+  }
+  .term-bar{
+    background: #061224;
+    padding: 8px 12px;
+    font-size: 11px;
+    color: var(--dim);
+    border-bottom: 1px solid var(--line);
+    letter-spacing: 1px;
+    display:flex; justify-content:space-between;
+  }
+  .term-body{
+    padding: 16px 18px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 13px;
+    color: #7dffb0;
+    height: 320px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    line-height: 1.6;
+  }
+  .term-body .cursor{
+    display:inline-block; width:8px; background: #7dffb0; animation: blink 1s step-start infinite;
+  }
+  @keyframes blink{ 50%{ opacity:0; } }
+  .glitch{
+    text-align:center; padding: 14px; font-size: 22px; font-weight: 800;
+    color: var(--ok); text-shadow: 0 0 14px var(--ok);
+    letter-spacing: 3px; display:none;
+  }
+  .close-btn{
+    display:block; margin: 14px auto 0; background: transparent; color: var(--dim);
+    border: 1px solid var(--line); padding: 6px 18px; border-radius: 4px; cursor:pointer;
+    font-family:'JetBrains Mono', monospace; font-size: 12px;
+  }
+  .close-btn:hover{ color: var(--cyan); border-color: var(--cyan); }
+
+  .final-banner{
+    display:none;
+    text-align:center;
+    border: 1px solid var(--ok);
+    background: rgba(35,255,157,0.06);
+    border-radius: 4px;
+    padding: 20px;
+    margin-top: 10px;
+    color: var(--ok);
+  }
+</style>
+</head>
+<body>
+<canvas id="rain"></canvas>
+<div class="scanlines"></div>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">// SISTEM TARGET: DONATE PLISS</div>
+    <h1>BREACH <span>PROTOCOL</span></h1>
+    <div class="sub">
+      Server "donate pliss" terindikasi memiliki 5 celah tersembunyi. Pecahkan setiap petunjuk untuk
+      mengungkap flag, lalu masukkan jawaban di prompt terminal masing-masing untuk memicu sekuens penetrasi.
+    </div>
+    <div class="progress-row">
+      <div class="bulb" id="bulb1"></div>
+      <div class="bulb" id="bulb2"></div>
+      <div class="bulb" id="bulb3"></div>
+      <div class="bulb" id="bulb4"></div>
+      <div class="bulb" id="bulb5"></div>
+    </div>
+    <a class="start-btn" id="startBtn" href="https://ftn-cyber.github.io/Donate-pliss-ctf/" target="_blank" rel="noopener noreferrer">
+      ▶ Mulai CTF
+    </a>
+  </header>
+
+  <!-- FLAG 1 -->
+  <div class="card" id="card1">
+    <div class="card-head">
+      <span class="flag-tag">🚩 FLAG_01 // AUTH_LAYER</span>
+      <span class="status locked" id="status1">TERKUNCI</span>
+    </div>
+    <div class="title-line">Sang Penjaga Gerbang</div>
+    <div class="hint-box">
+      <b>Hint:</b> "Aku adalah sebuah satpam yang menjaga keamanan pada opsi login di web donate pliss."
+    </div>
+    <div class="prompt-row">
+      <span class="ps1">root@auth:~$</span>
+      <input type="text" id="input1" placeholder="masukkan jawaban flag..." autocomplete="off">
+      <button class="submit-btn" onclick="checkFlag(1)">exec</button>
+    </div>
+    <div class="feedback" id="feedback1"></div>
+    <div class="flag-value" id="value1">Flag ditemukan: <code>satpam SQL injection telah ketahuan</code></div>
+  </div>
+
+  <!-- FLAG 2 -->
+  <div class="card" id="card2">
+    <div class="card-head">
+      <span class="flag-tag">🚩 FLAG_02 // DONOR_TRACE</span>
+      <span class="status locked" id="status2">TERKUNCI</span>
+    </div>
+    <div class="title-line">Donatur Berkedok</div>
+    <div class="hint-box">
+      <b>Hint:</b> "Aku adalah orang yang pernah donate di, donate pliss."
+    </div>
+    <div class="prompt-row">
+      <span class="ps1">root@donor:~$</span>
+      <input type="text" id="input2" placeholder="masukkan jawaban flag..." autocomplete="off">
+      <button class="submit-btn" onclick="checkFlag(2)">exec</button>
+    </div>
+    <div class="feedback" id="feedback2"></div>
+    <div class="flag-value" id="value2">Flag ditemukan: <code>yah hacker yang pura-pura donate ketahuan</code></div>
+  </div>
+
+  <!-- FLAG 3 -->
+  <div class="card" id="card3">
+    <div class="card-head">
+      <span class="flag-tag">🚩 FLAG_03 // ROOT_ACCESS</span>
+      <span class="status locked" id="status3">TERKUNCI</span>
+    </div>
+    <div class="title-line">Akar Sang Sistem</div>
+    <div class="hint-box">
+      <b>Hint:</b> "Aku adalah akar dari web donate pliss."
+    </div>
+    <div class="prompt-row">
+      <span class="ps1">root@core:~$</span>
+      <input type="text" id="input3" placeholder="masukkan jawaban flag..." autocomplete="off">
       <button class="submit-btn" onclick="checkFlag(3)">exec</button>
     </div>
     <div class="feedback" id="feedback3"></div>
